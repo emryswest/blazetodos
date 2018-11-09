@@ -3,9 +3,8 @@
     <header>
       <h1>Todo List</h1>
 
-      <form class="new-task">
-        <input type="text" name="text" placeholder="Type to add new tasks" />
-      </form>
+      {{> uploadForm}}
+
     </header>
 
     <ul>
@@ -15,6 +14,16 @@
     </ul>
   </div>
 </body>
+
+<template name="uploadForm">
+  {{#with currentUpload}}
+    Uploading <b>{{file.name}}</b>:
+    <span id="progress">{{progress.get}}%</span>
+  {{else}}
+    <input id="fileInput" type="file" />
+    <p><small>Upload file in <code>jpeg</code> or <code>png</code> format, with size less or equal to 10MB</small></p>
+  {{/with}}
+</template>
 
 <template name="task">
   <li>{{text}}</li>
