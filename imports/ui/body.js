@@ -5,6 +5,12 @@ import { Tasks } from '../api/tasks.js';
 
 import './body.html';
 
+Template.uploadedFiles.helpers({
+  uploadedFiles: function () {
+    return Images.find();
+  }
+});
+
 Template.uploadForm.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
