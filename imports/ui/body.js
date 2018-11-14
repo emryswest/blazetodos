@@ -9,6 +9,12 @@ Template.uploadedFiles.helpers({
   }
 });
 
+Template.uploadedFiles.events({
+  'click .delete'() {
+  Images.remove(this.file);
+  },
+});
+
 Template.uploadForm.onCreated(function () {
   this.currentUpload = new ReactiveVar(false);
 });
@@ -29,7 +35,7 @@ Template.uploadForm.events({
         var uploadInstance = Images.insert({
           file: file,
           streams: 'dynamic',
-          chunkSize: 'dynamic'
+          chunkSize: 'dynamic',
         }, false);
 
         uploadInstance.on('start', function() {
@@ -39,9 +45,7 @@ Template.uploadForm.events({
         uploadInstance.on('end', function(error, fileObj) {
           if (error) {
             window.alert('Error during upload: ' + error.reason);
-          } else {
-            window.alert('File "' + fileObj.name + '" successfully uploaded');
-          }
+          } 
           template.currentUpload.set(false);
         });
 

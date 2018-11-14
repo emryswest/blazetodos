@@ -10,7 +10,7 @@
     <ul>
 
         {{> uploadedFiles}}
-      
+
     </ul>
   </div>
 </body>
@@ -30,6 +30,8 @@
     <ul>
       {{#each file in uploadedFiles.each}}
         <li>
+          <button class="delete">&times;</button>
+          <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
           <a href="{{file.link}}?download=true" download="{{file.name}}">{{file.name}}</a>
         </li>
       {{/each}}
