@@ -11,7 +11,7 @@ Template.uploadedFiles.helpers({
 
 Template.uploadedFiles.events({
   'click .delete'() {
-  Images.remove(this.file);
+  Images.findOne(this._id).remove();
   },
 });
 
@@ -45,7 +45,7 @@ Template.uploadForm.events({
         uploadInstance.on('end', function(error, fileObj) {
           if (error) {
             window.alert('Error during upload: ' + error.reason);
-          } 
+          }
           template.currentUpload.set(false);
         });
 
